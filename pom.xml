@@ -91,6 +91,8 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+				<builder>paketobuildpacks/builder-jammy-base:latest</builder>
+				<image><name>person_minitask</name></image>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>

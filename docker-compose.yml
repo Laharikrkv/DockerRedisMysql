@@ -1,0 +1,32 @@
+services:
+  person_mysql:	
+    image: mysql:8.0
+    container_name: person_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testdb
+    ports:
+      - "3307:3306"
+    networks:
+      - backend
+  person_redis:
+    image: redis:latest
+    container_name: person_redis
+    ports:
+      - "6379:6379"
+    restart: always
+    networks:
+      - backend
+  person_redis_task:
+    image: person_minitask:latest
+    depends_on:
+      - person_mysql
+      - person_redis
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+
+networks:
+  backend:
