@@ -11,14 +11,14 @@ This project is a demo Spring Boot RESTful API for managing `Person` entities, u
 - **Lombok** for boilerplate code reduction
 - **API endpoints** for create, update, read (single & paginated), filter, and search
 - **Postman**-friendly endpoints
-- **Docker Compose**-ready setup for MySQL and Redis
+- **Docker Compose**-ready setup for MySQL, Redis and Spring oot Application
 
 ---
 
 ## Prerequisites
 
-- [Java 17+](https://adoptopenjdk.net/)
-- [Maven](https://maven.apache.org/) or [Gradle](https://gradle.org/)
+- [Java 21](https://adoptopenjdk.net/)
+- [Maven](https://maven.apache.org/) 
 - [Docker](https://www.docker.com/) for local MySQL and Redis
 
 ---
@@ -37,7 +37,7 @@ cd your-repo
 #### MySQL
 
 ```sh
-docker run --name mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=testdb -p 3306:3306 -d mysql:8
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=testdb -p 3307:3306 -d mysql:8
 ```
 
 #### Redis
@@ -53,7 +53,7 @@ Edit `src/main/resources/application.yml`:
 ```yaml
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/testdb
+    url: jdbc:mysql://person_mysql:3306/testdb
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -62,7 +62,7 @@ spring:
       ddl-auto: update
     show-sql: true
   redis:
-    host: localhost
+    host: person_redis
     port: 6379
 ```
 
@@ -70,8 +70,7 @@ spring:
 
 ```sh
 ./mvnw spring-boot:run
-# or
-./gradlew bootRun
+
 ```
 
 ---
@@ -155,12 +154,7 @@ src/
 
 ---
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
 
 ## Author
 
-- [Your Name](https://github.com/your-username)
+- [K Lahari](https://github.com/laharikrkv)
